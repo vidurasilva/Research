@@ -1,0 +1,36 @@
+{% extends ':email:base.html.twig' %}
+{% block content %}
+    <p style="{{ paragraphStyle }}">
+        Hi!
+    </p>
+
+    <p style="{{ paragraphStyle }}">
+        {{ firstname }} has added you as a supervisor to help him to achieve the goal {{ goal }}.
+    </p>
+
+    {% if deadline %}
+        {% set deadLineText = deadline.format('l jS F Y') %}
+    {% else %}
+        {% set deadLineText = 'the deadline' %}
+    {% endif %}
+
+    {% if hasMoneyStake %}
+        <p style="{{ paragraphStyle }}">
+            {{ firstname }} put {{ stakeCurrency }} {{ stakes | number_format(2) }} at stake, which will be donated when failing to achieve the goal before {{ deadLineText }}!
+        </p>
+    {% elseif hasImageStake %}
+        <p style="{{ paragraphStyle }}">
+            {{ firstname }} put an embarrassing picture at stake, which will be published when failing to achieve the goal before {{ deadLineText }}!
+        </p>
+
+        <p style="{{ paragraphStyle }}">
+            When {{ firstname }} does a check-in, you will be notified (max once a week).
+        </p>
+    {% endif %}
+
+    <p style="{{ paragraphStyle }}">
+        When {{ firstname }} reached {% if deadline %}the deadline ({{ deadLineText }}){% else %}{{ deadLineText }}{% endif %} of the goal, you will get a final mail to confirm whether {{ firstname }} achieved or failed.
+    </p>
+
+
+{% endblock %}

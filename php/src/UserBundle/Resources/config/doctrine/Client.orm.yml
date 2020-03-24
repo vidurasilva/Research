@@ -1,0 +1,17 @@
+UserBundle\Entity\Client:
+    type: entity
+    table: null
+    repositoryClass: UserBundle\Repository\ClientRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+
+    fields:
+      deviceFamily:
+        type: string
+      scope:
+        type: string
+        nullable: true

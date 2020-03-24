@@ -1,0 +1,37 @@
+AppBundle\Entity\GoalGroup:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\GoalGroupRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+          type: string
+          nullable: false
+    oneToMany:
+      groupUsers:
+        targetEntity: AppBundle\Entity\GroupUser
+        mappedBy: group
+        cascade: ["persist","remove"]
+      invitations:
+        targetEntity: AppBundle\Entity\GroupInvite
+        mappedBy: group
+        cascade: ["persist","remove"]
+    manyToOne:
+      admin:
+        targetEntity: UserBundle\Entity\User
+        joinColumn:
+          name: user_id
+          referencedColumnName: id
+          onDelete: SET NULL
+      goal:
+        targetEntity: AppBundle\Entity\Goal
+        joinColumn:
+          name: goal_id
+          referencedColumnName: id
+          onDelete: CASCADE
+    lifecycleCallbacks: {  }

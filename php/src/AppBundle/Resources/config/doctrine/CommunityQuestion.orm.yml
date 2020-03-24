@@ -1,0 +1,50 @@
+AppBundle\Entity\CommunityQuestion:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\CommunityQuestionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        created:
+            type: datetime
+            gedmo:
+              timestampable:
+                on: create
+        updated:
+            type: datetime
+            gedmo:
+              timestampable:
+                on: update
+    manyToOne:
+        communityCategory:
+          targetEntity: AppBundle\Entity\CommunityCategory
+          inversedBy: questions
+          joinColumn:
+            name: community_category_id
+            referencedColumnName: id
+            onDelete: CASCADE
+            fetch: EXTRA_LAZY
+        user:
+          targetEntity: UserBundle\Entity\User
+          inversedBy: questions
+          joinColumn:
+            name: user_id
+            referencedColumnName: id
+            onDelete: CASCADE
+            fetch: LAZY
+
+    oneToMany:
+      answers:
+        targetEntity: AppBundle\Entity\CommunityQuestionAnswer
+        mappedBy: questions
+      votes:
+        targetEntity: AppBundle\Entity\CommunityQuestionVote
+        mappedBy: questions
+    lifecycleCallbacks: {  }

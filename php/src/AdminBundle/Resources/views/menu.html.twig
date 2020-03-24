@@ -1,0 +1,10 @@
+{% extends 'KnpMenuBundle::menu.html.twig' %}
+{% block linkElement %}
+    {% import 'knp_menu.html.twig' as knp_menu %}
+    <a href="{{ item.uri }}"{{ knp_menu.attributes(item.linkAttributes) }}>
+        {% if item.attribute('icon') is not empty %}
+            <i class="{{ item.attribute('icon') }}"></i>
+        {% endif %}
+        <span>{{ block('label') }}</span>
+    </a>
+{% endblock %}

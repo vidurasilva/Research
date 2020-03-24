@@ -1,0 +1,9 @@
+supervisor_decline_task_checkin:
+  path: /supervisor/decline/{declineToken}/{user}
+  methods: [GET]
+  defaults: { _controller: AppBundle:Supervisor:declineTaskCheckin }
+
+supervisor_accept_task_checkin:
+  path: /supervisor/accept/{acceptToken}/{user}
+  methods: [GET]
+  defaults: { _controller: AppBundle:Supervisor:acceptTaskCheckin }

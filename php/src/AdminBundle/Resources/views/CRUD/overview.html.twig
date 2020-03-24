@@ -1,0 +1,39 @@
+{% extends 'AdminBundle:CRUD:default.html.twig' %}
+
+{% block crud_default %}
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            {#<th>Modified</th>#}
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in entity %}
+            <tr>
+                <td><a href="{{ path('category_show', { 'id': item.id }) }}">{{ item.id }}</a></td>
+                <td>{{ item.title }}</td>
+                {#<td>{{ item.modified }}</td>#}
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('category_edit', { 'id': item.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('category_edit', { 'id': item.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            {#<a href="{{ path('entity_create') }}">Create a new entry</a>#}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,54 @@
+community_category_index:
+  path: /community/categories
+  methods: [GET]
+  defaults: { _controller: AppBundle:CommunityCategory:index }
+
+community_category_detail:
+  path: /community/categories/{id}
+  methods: [GET]
+  defaults: { _controller: AppBundle:CommunityCategory:detail }
+
+community_category_question_index:
+  path: /community/categories/{id}/questions
+  methods: [GET]
+  defaults: { _controller: AppBundle:CommunityQuestion:index }
+
+community_category_question_detail:
+  path: /community/categories/{id}/questions/{questionId}
+  methods: [GET]
+  defaults: { _controller: AppBundle:CommunityQuestion:detail }
+
+community_category_question_create:
+  path: /community/categories/{id}/questions
+  methods: [POST]
+  defaults: { _controller: AppBundle:CommunityQuestion:create }
+
+community_question_vote:
+  path: /community/questions/{id}/vote
+  methods: [POST]
+  defaults: { _controller: AppBundle:CommunityQuestion:vote }
+
+community_question_answer_index:
+  path: /community/questions/{questionId}/answers
+  methods: [GET]
+  defaults: { _controller: AppBundle:CommunityAnswer:index }
+
+community_question_answer_create:
+  path: /community/questions/{questionId}/answers
+  methods: [POST]
+  defaults: { _controller: AppBundle:CommunityAnswer:create }
+
+community_question_comment_create:
+  path: /community/answers/{answerId}
+  methods: [POST]
+  defaults: { _controller: AppBundle:CommunityAnswer:createComment }
+
+community_question_answer_vote:
+  path: /community/answers/{answerId}/vote
+  methods: [POST]
+  defaults: { _controller: AppBundle:CommunityAnswer:vote }
+
+community_category_question_user:
+  path: /user/questions
+  methods: [GET]
+  defaults: { _controller: AppBundle:CommunityQuestion:indexUser }

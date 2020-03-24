@@ -1,0 +1,69 @@
+goals_category_index:
+  path: /goals/categories
+  methods: [GET,OPTIONS]
+  defaults: { _controller: AppBundle:GoalCategory:index }
+
+goals_category_detail:
+  path: /goals/categories/{category}
+  methods: [GET,OPTIONS]
+  defaults: { _controller: AppBundle:GoalCategory:detail }
+
+charity_list:
+  path: /goals/charities
+  methods: [GET,OPTIONS]
+  defaults: { _controller: AppBundle:Charity:index}
+
+use_goal:
+  path: /goals/{originGoal}/use
+  methods: [POST,OPTIONS]
+  defaults: { _controller: AppBundle:Goal:useGoal}
+
+use_goal_update:
+  path: /user/goals/{userGoal}
+  methods: [POST,OPTIONS]
+  defaults: { _controller: AppBundle:Goal:updateUserGoal}
+
+user_goal_succeeded:
+  path: /user/goal/{userGoal}/succeeded
+  methods: [GET,OPTIONS]
+  defaults: { _controller: AppBundle:Goal:succeededGoal}
+
+user_failed_goals:
+  path: /user/goals/failed
+  methods: [GET,OPTIONS]
+  defaults: { _controller: AppBundle:Goal:failedGoals}
+
+user_succeeded_goals:
+  path: /user/goals/succeeded
+  methods: [GET,OPTIONS]
+  defaults: { _controller: AppBundle:Goal:succeededGoals}
+
+goals_goal_detail_retry:
+  path: /goals/{goal}/retry
+  methods: [GET,OPTIONS]
+  defaults: { _controller: AppBundle:Goal:retryDetail }
+
+goals_goal_detail:
+  path: /goals/{goal}
+  methods: [GET,OPTIONS]
+  defaults: { _controller: AppBundle:Goal:detail }
+
+user_goal_create:
+  path: /user/goals
+  methods: [POST,OPTIONS]
+  defaults: { _controller: AppBundle:Goal:create}
+
+user_goal_index:
+  path: /user/goals
+  methods: [GET,OPTIONS]
+  defaults: { _controller: AppBundle:Goal:index}
+
+user_close_goal:
+  path: /user/goal/{userGoal}/close
+  methods: [GET,OPTIONS]
+  defaults: { _controller: AppBundle:Goal:closeGoal}
+
+user_dashboard:
+  path: /user/dashboard
+  methods: [GET,OPTIONS]
+  defaults: { _controller: AppBundle:Dashboard:dashboard}

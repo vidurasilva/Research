@@ -1,0 +1,19 @@
+UserBundle\Entity\AccessToken:
+    type: entity
+    table: null
+    repositoryClass: UserBundle\Repository\AccessTokenRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+      client:
+        targetEntity: UserBundle\Entity\Client
+        joinColumn:
+          onDelete: CASCADE
+      user:
+        targetEntity: UserBundle\Entity\User
+        joinColumn:
+          onDelete: CASCADE

@@ -1,0 +1,19 @@
+homepage:
+  path: /
+  defaults: { _controller: AppBundle:Default:homepage }
+_user_api:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    type:     rest
+    prefix:   /api
+
+_goals_api:
+    resource: "@ApiBundle/Resources/config/routing.yml"
+    type: rest
+    prefix: /api
+
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix: /%admin_url%
+
+app:
+    resource: "@AppBundle/Resources/config/routing.yml"

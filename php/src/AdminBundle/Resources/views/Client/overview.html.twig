@@ -1,0 +1,24 @@
+{% extends 'AdminBundle:CRUD:default.html.twig' %}
+
+{% block crud_default %}
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Client ID</th>
+            <th>Client Secret</th>
+            <th>Device Family</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.getId() }}</td>
+                <td>{{ client.getRandomId() }}</td>
+                <td>{{ client.getSecret() }}</td>
+                <td>{{ client.getDeviceFamily() }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

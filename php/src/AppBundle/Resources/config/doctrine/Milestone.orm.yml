@@ -1,0 +1,53 @@
+AppBundle\Entity\Milestone:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\MilestoneRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+          type: string
+          length: 255
+        number:
+          type: integer
+          options:
+            unsigned: true
+        recurrence:
+          type: string
+          nullable: true
+        iterations:
+          type: integer
+          nullable: true
+          options:
+            unsigned: true
+        duration:
+          type: integer
+          nullable: true
+          options:
+            unsigned: true
+        deadline:
+          type: datetime
+          nullable: true
+        startDate:
+          type: datetime
+          nullable: true
+    oneToMany:
+      tasks:
+        targetEntity: AppBundle\Entity\Task
+        mappedBy: milestone
+        cascade: ["persist", "remove"]
+        orphanRemoval: true
+#        fetch: EAGER
+    manyToOne:
+      goal:
+        targetEntity: AppBundle\Entity\Goal
+        inversedBy: milestones
+        joinColumn:
+          cascade: DELETE
+          onDelete: CASCADE
+    lifecycleCallbacks:
+        preUpdate: [preUpdate]

@@ -1,0 +1,34 @@
+AppBundle\Entity\UserGoalImage:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\UserGoalImageRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        image:
+          type: string
+        originalName:
+          type: string
+        mailSended:
+          type: boolean
+          options:
+            default: 0
+          nullable: true
+        mailAttemps:
+          type: integer
+          nullable: true
+          options:
+              default: 0
+
+    manyToOne:
+      userGoal:
+        targetEntity: AppBundle\Entity\UserGoal
+        inversedBy: userGoalImages
+        joinColumn:
+          onDelete: CASCADE
+
+    lifecycleCallbacks: {  }

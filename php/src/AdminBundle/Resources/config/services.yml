@@ -1,0 +1,4 @@
+services:
+    admin.file_uploader:
+        class: AdminBundle\Service\FileUploader
+        arguments: ['%kernel.root_dir%/../web/%data_upload_web%']

@@ -1,0 +1,26 @@
+{% extends 'AdminBundle:CRUD:default.html.twig' %}
+
+{% block crud_default %}
+
+    <div class="form-group">
+        <a href="{{ path('category_overview') }}">
+            <button class="btn btn-white">Back to overview</button>
+        </a>
+    </div>
+
+    <div class="col-sm-8">
+        {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <br />
+        <input class="btn btn-success" type="submit" value="Save"/>
+        {{ form_end(edit_form) }}
+    </div>
+    <div class="col-sm-4" style="padding: 10px; min-height:200px; text-align: center; border: solid #ccc 1px;">
+        <img src="{{ asset('data/uploads') }}/{{ category.icon }}"/>
+    </div>
+    <div class="form-group">
+        {{ form_start(delete_form) }}
+        <input class="btn btn-false" type="submit" value="Delete">
+        {{ form_end(delete_form) }}
+    </div>
+{% endblock %}

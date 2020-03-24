@@ -1,0 +1,22 @@
+user_daily_checkins:
+  path: /user/checkins
+  methods: [GET]
+  defaults: { _controller: AppBundle:Checkin:availableUserCheckins }
+
+user_checkin_timeline:
+  path: /user/checkins/{userGoal}
+  methods: [GET]
+  defaults: { _controller: AppBundle:Checkin:checkinTimeline }
+
+user_checkin:
+  path: /user/checkins/{userGoalId}/{taskId}
+  methods: [POST]
+  defaults: { _controller: AppBundle:Checkin:checkIn }
+  requirements:
+      userGoalId: '\d+'
+      taskId: '\d+'
+
+user_checkin_detail:
+  path: /user/goals/{userGoal}/checkin/{task}
+  methods: [GET]
+  defaults: { _controller: AppBundle:Checkin:detail }

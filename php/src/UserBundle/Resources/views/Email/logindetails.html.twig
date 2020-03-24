@@ -1,0 +1,17 @@
+
+{% block content %}
+<h1 style="font-size:30px; line-height:40px; font-weight: bold; font-family: Helvetica, Arial, sans-serif;">Welkom nieuwe challenger!</h1>
+<span style="font-size:16px; font-family: Helvetica, Arial, sans-serif; line-height: 24px;">
+    Dit zijn je login-gegevens voor de Challenge Accepted.<br/><br/>
+    <table>
+        <tr>
+            <td><strong>Gebruikersnaam:</strong></td>
+            <td>{{ user.username }}</td>
+        </tr>
+            <tr>
+            <td><strong>Wachtwoord:</strong></td>
+            <td><em>Gebruik het wachtwoord waarmee je hebt geregistreerd.</em></td>
+        </tr>
+    </table>
+</span>
+{% endblock %}

@@ -1,0 +1,20 @@
+AppBundle\Entity\CharityCategory:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\CharityCategoryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+    oneToMany:
+      charities:
+        targetEntity: AppBundle\Entity\Charity
+        mappedBy: charityCategory
+
+    lifecycleCallbacks: {  }

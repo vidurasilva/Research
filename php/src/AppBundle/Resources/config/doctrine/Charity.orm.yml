@@ -1,0 +1,22 @@
+AppBundle\Entity\Charity:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\CharityRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+    manyToOne:
+      charityCategory:
+        targetEntity: AppBundle\Entity\CharityCategory
+        inversedBy: charities
+        joinColumn:
+          onDelete: CASCADE
+
+    lifecycleCallbacks: {  }

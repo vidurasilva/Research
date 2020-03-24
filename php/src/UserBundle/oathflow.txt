@@ -1,0 +1,5 @@
+Create token for new user:
+api/oauth/v2/token?client_id=1_random_id&client_secret=secret&grant_type=client_credentials&username=ngeleedsdt%6@e-sites.nl&password=test
+
+Create token for existing user. If the user entity is locked or disabled this will fall into an exception.
+api/oauth/v2/token?client_id=1_random_id&client_secret=secret&grant_type=password&username=ngeleedsdt%6@e-sites.nl&password=test

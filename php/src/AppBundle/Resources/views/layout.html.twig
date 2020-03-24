@@ -1,0 +1,78 @@
+<style>
+    html {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    #header {
+        width: 100%;
+        height: 120px;
+        background-color: #00accd;
+    }
+
+
+
+    .btn-push {
+        border-radius: 5px;
+        background-color: #eb5e4c;
+    }
+
+    .form-control {
+        margin-bottom: 10px;
+        margin-right: 10px;
+        width: 90% !important;
+        -webkit-border-radius: 10px !important;
+        -moz-border-radius: 10px !important;
+        border-radius: 10px !important;
+    }
+
+    .btn-push {
+        min-width: 150px;
+        color: #fff;
+    }
+
+    .round {
+        -webkit-border-radius: 10px !important;
+        -moz-border-radius: 10px !important;
+        border-radius: 10px !important;
+    }
+
+    .wrapper {
+       padding: 15px 10%;
+        width: 100%;
+        background-color: #fff;
+    }
+
+    .flash-notice {
+        display: block;
+        background-color: #e76851;
+        padding: 1em;
+        font-size: 1.5em;
+        color: white;
+    }
+
+    .group-link{
+        color: #00accd;
+    }
+
+</style>
+<html>
+<head>
+    <title>Push</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.css') }}">
+</head>
+<body>
+<div id="header" class="wrapper">
+    <img src="{{ asset('bundles/app/images/logo_mail.png') }}" width="75px"/>
+</div>
+<div id="wrapper" class="wrapper">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

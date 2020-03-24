@@ -1,0 +1,51 @@
+AppBundle\Entity\SupervisorCheckinTokens:
+  type: entity
+  table: null
+  repositoryClass: AppBundle\Repository\SupervisorCheckinTokensRepository
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+  fields:
+    acceptToken:
+      type: string
+      length: 255
+    declineToken:
+      type: string
+      length: 255
+    status:
+      type: string
+      length: 64
+      options:
+        default: 0
+    mailAttemps:
+      type: smallint
+      length: 1
+      options:
+        default: 0
+    image:
+      type: string
+      nullable: true
+    createdAt:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+  manyToOne:
+    userGoal:
+      targetEntity: AppBundle\Entity\UserGoal
+      joinColumn:
+        name: user_goal_id
+        referencedColumnName: id
+        onDelete: CASCADE
+        nullable: false
+    task:
+      targetEntity: AppBundle\Entity\Task
+      joinColumn:
+        name: task_id
+        referencedColumnName: id
+        onDelete: CASCADE
+        nullable: false
+  lifecycleCallbacks: {  }

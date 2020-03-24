@@ -1,0 +1,48 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block content %}
+
+    {% block crud_advanced %}{% endblock %}
+
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            {% if pageTitle is defined %}
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ pageTitle }}</h3> {# @todo:Generate heading by entity?#}
+            </div>
+            {% endif %}
+            <!--End panel-heading-->
+            <div class="panel-body">
+                {% block crud_default %}{% endblock %}
+            </div>
+            <!--End panel-body-->
+        </div>
+    </div>
+
+    <script src="{{ asset('bundles/admin/js/jquery.collection.js') }}"></script>
+
+    <script type="text/javascript">
+
+
+        $('.parent-collection').collection({
+            min: 0,
+            max: 5,
+            up: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span> Move up</a>',
+            down: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span> Move down</a>',
+            add: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span> Add milestone</a>',
+            remove: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Remove</a>',
+            duplicate: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-th-large"></span> Duplicate</a>',
+            prefix: 'parent',
+            allow_duplicate: false,
+            children: [{
+                selector: '.child-collection',
+                add: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span> Add task</a>',
+                remove: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Remove task</a>',
+                up: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span> Move up</a>',
+                down: '<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span> Move down</a>',
+                allow_duplicate: false,
+            }]
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+user_groups:
+  path: /user/groups
+  methods: [GET]
+  defaults: { _controller: AppBundle:GoalGroup:index }
+
+user_groups_detail:
+  path: /user/groups/{id}
+  methods: [GET]
+  defaults: { _controller: AppBundle:GoalGroup:index }
+
+user_groups_invite_reject:
+  path: /user/groups/invites/{groupUserId}/reject
+  methods: [PUT]
+  defaults: { _controller: AppBundle:GoalGroup:reject }

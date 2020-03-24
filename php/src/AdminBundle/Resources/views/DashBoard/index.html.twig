@@ -1,0 +1,166 @@
+{% extends "AdminBundle::layout.html.twig" %}
+
+{% block dashboard_widgets %}
+
+    <div class="row">
+
+        <div class="col-sm-3">
+
+            <div class="xe-widget xe-counter" data-count=".num" data-from="0" data-to="99.9" data-suffix="%"
+                 data-duration="2">
+                <div class="xe-icon">
+                    <i class="fa fa-dashboard fa-3"></i>
+                </div>
+                <div class="xe-label">
+                    <strong class="num">{{ stats.goals }}</strong>
+                    <span>Goals total</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-3">
+
+            <div class="xe-widget xe-counter xe-counter-blue" data-count=".num" data-from="1" data-to="117"
+                 data-suffix="k" data-duration="3" data-easing="false">
+                <div class="xe-icon">
+                    <i class="linecons-user"></i>
+                </div>
+                <div class="xe-label">
+                    <strong class="num">{{ stats.users }}</strong>
+                    <span>Users Total</span>
+                </div>
+            </div>
+
+        </div>
+
+        {#<div class="col-sm-3">#}
+
+            {#<div class="xe-widget xe-counter xe-counter-info" data-count=".num" data-from="1000" data-to="2470"#}
+                 {#data-duration="4" data-easing="true">#}
+                {#<div class="xe-icon">#}
+                    {#<i class="linecons-camera"></i>#}
+                {#</div>#}
+                {#<div class="xe-label">#}
+                    {#<strong class="num"></strong>#}
+                    {#<span></span>#}
+                {#</div>#}
+            {#</div>#}
+
+        {#</div>#}
+
+        {#<div class="col-sm-3">#}
+
+            {#<div class="xe-widget xe-counter xe-counter-red" data-count=".num" data-from="0" data-to="57"#}
+                 {#data-prefix="-," data-suffix="%" data-duration="5" data-easing="true" data-delay="1">#}
+                {#<div class="xe-icon">#}
+                    {#<i class="linecons-lightbulb"></i>#}
+                {#</div>#}
+                {#<div class="xe-label">#}
+                    {#<strong class="num"></strong>#}
+                    {#<span></span>#}
+                {#</div>#}
+            {#</div>#}
+
+        {#</div>#}
+
+        {#<div class="col-sm-3">#}
+
+            {#<div class="xe-widget xe-counter-block" data-count=".num" data-from="0" data-to="99.9" data-suffix="%"#}
+                 {#data-duration="2">#}
+                {#<div class="xe-upper">#}
+
+                    {#<div class="xe-icon">#}
+                        {#<i class="linecons-cloud"></i>#}
+                    {#</div>#}
+                    {#<div class="xe-label">#}
+                        {#<strong class="num"></strong>#}
+                        {#<span></span>#}
+                    {#</div>#}
+
+                {#</div>#}
+                {#<div class="xe-lower">#}
+                    {#<div class="border"></div>#}
+
+                    {#<span></span>#}
+                    {#<strong></strong>#}
+                {#</div>#}
+            {#</div>#}
+
+        {#</div>#}
+
+        {#<div class="col-sm-3">#}
+
+            {#<div class="xe-widget xe-counter-block xe-counter-block-purple" data-count=".num" data-from="0"#}
+                 {#data-to="512" data-duration="3">#}
+                {#<div class="xe-upper">#}
+
+                    {#<div class="xe-icon">#}
+                        {#<i class="linecons-camera"></i>#}
+                    {#</div>#}
+                    {#<div class="xe-label">#}
+                        {#<strong class="num"></strong>#}
+                        {#<span></span>#}
+                    {#</div>#}
+
+                {#</div>#}
+                {#<div class="xe-lower">#}
+                    {#<div class="border"></div>#}
+
+                    {#<span></span>#}
+                    {#<strong></strong>#}
+                {#</div>#}
+            {#</div>#}
+
+        {#</div>#}
+
+        {#<div class="col-sm-3">#}
+
+            {#<div class="xe-widget xe-counter-block xe-counter-block-blue" data-suffix="k" data-count=".num"#}
+                 {#data-from="0" data-to="310" data-duration="4" data-easing="false">#}
+                {#<div class="xe-upper">#}
+
+                    {#<div class="xe-icon">#}
+                        {#<i class="linecons-user"></i>#}
+                    {#</div>#}
+                    {#<div class="xe-label">#}
+                        {#<strong class="num"></strong>#}
+                        {#<span></span>#}
+                    {#</div>#}
+
+                {#</div>#}
+                {#<div class="xe-lower">#}
+                    {#<div class="border"></div>#}
+
+                    {#<span></span>#}
+                    {#<strong></strong>#}
+                {#</div>#}
+            {#</div>#}
+
+        {#</div>#}
+
+        {#<div class="col-sm-3">#}
+
+            {#<div class="xe-widget xe-counter-block xe-counter-block-orange">#}
+                {#<div class="xe-upper">#}
+
+                    {#<div class="xe-icon">#}
+                        {#<i class="fa-life-ring"></i>#}
+                    {#</div>#}
+                    {#<div class="xe-label">#}
+                        {#<strong class="num"></strong>#}
+                        {#<span></span>#}
+                    {#</div>#}
+
+                {#</div>#}
+                {#<div class="xe-lower">#}
+                    {#<div class="border"></div>#}
+
+                    {#<span></span>#}
+                    {#<strong data-count="this" data-from="0" data-to="14215" data-duration="2"></strong>#}
+                {#</div>#}
+            {#</div>#}
+
+        {#</div>#}
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
+    # You should uncomment this if you want use pdo_sqlite
+    # database_path: "%kernel.root_dir%/data.db3"
+
+    mailer_transport:      smtp
+    mailer_host:           127.0.0.1
+    mailer_user:           ~
+    mailer_password:       ~
+    mailer_name:           pleasepush.me
+    mailer_email:          info@pleasepush.me
+    mailer_email_pictures: noreply@pleasepush.me
+
+    # A secret key that's used to generate certain security-related tokens
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    site_title: pleasepush.me
+    admin_url: 1cp7x9f7hv
+    marketing_site_url: http://pleasepush.me/
+    facebook_app_id: 175923052842019
+    facebook_app_secret: 01ea9ead34710813c2674c6110b27c2e
+    google_client_id: 416521347698-ashrpmcat4hinqblbtngdrnvaaob0u8g.apps.googleusercontent.com
+    google_client_secret: fsIQsnGcwzVhIHnwPqTHCKVR
+    data_upload_web: '/data/uploads'
+    data_uploads: '%kernel.root_dir%/../web/data/uploads'
+    cooldown_time: '+2 days'

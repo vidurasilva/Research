@@ -1,0 +1,28 @@
+imports:
+    - { resource: '@AdminBundle/Resources/config/services.yml' }
+    - { resource: '@AppBundle/Resources/config/services.yml' }
+
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    app.service.mailer:
+        class: AppBundle\Service\MailerService
+        arguments: ["@twig", "@mailer", "%mailer_email%", "%mailer_name%"]
+    app.service.goal:
+        class: AppBundle\Service\GoalService
+        arguments: ['@app.service.mailer', '@doctrine.orm.entity_manager', '%data_uploads%']
+    app.service.repetitive_goal:
+        class: AppBundle\Service\RepetitiveGoal
+        arguments: ['@doctrine.orm.entity_manager']
+    app.service.user_goal:
+        class: AppBundle\Service\UserGoal
+        arguments: ['@doctrine.orm.entity_manager', '@app.service.stripe_payment', '@app.service.mailer', '%mailer_email_pictures%', '%cooldown_time%']
+    app.service.stripe_payment:
+        class: AppBundle\Service\StripePayment
+        arguments: ['%stripe_api_key%', '@doctrine.orm.entity_manager']
+    app.service.score_service:
+        class: AppBundle\Service\ScoreService
+        arguments: ['@doctrine.orm.entity_manager']

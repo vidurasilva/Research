@@ -1,0 +1,120 @@
+AppBundle\Entity\UserGoal:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\UserGoalRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        created:
+            type: datetime
+            gedmo:
+              timestampable:
+                on: create
+        updated:
+            type: datetime
+            gedmo:
+              timestampable:
+                on: update
+        startDate:
+            type: datetime
+        endDate:
+            type: datetime
+            nullable: true
+        deadline:
+            type: datetime
+            nullable: true
+        currency:
+            type: string
+            length: 3
+            nullable: true
+        stakeAmount:
+            type: decimal
+            scale: 2
+            nullable: true
+        globalStake:
+            type: boolean
+            options:
+              default: 0
+        maximumFails:
+            type: integer
+            options:
+              unsigned: true
+        superVisor:
+            type: string
+            nullable: true
+        requiresCheckinImage:
+            type: boolean
+            options:
+              default: 1
+        active:
+            type: boolean
+            options:
+              default: 0
+        finished:
+            type: boolean
+            options:
+              default: 0
+        paymentToken:
+            type: string
+            nullable: true
+        show_in_dashboard:
+            type: boolean
+            options:
+              default: 1
+            nullable: false
+        status:
+            type: string
+            options:
+              default: open
+        transactionAttempts:
+            type: integer
+            options:
+              default: 0
+        supervisorNotified:
+            type: boolean
+            options:
+              default: 0
+            nullable: false
+    manyToOne:
+      user:
+        targetEntity: UserBundle\Entity\User
+        inversedBy: userGoals
+        joinColumn:
+          name: user_id
+          referencedColumnName: id
+          onDelete: CASCADE
+      group:
+        targetEntity: AppBundle\Entity\GoalGroup
+        inversedBy: groupUsers
+        joinColumn:
+          name: group_id
+          referencedColumnName: id
+        cascade: ["persist"]
+      goal:
+        targetEntity: AppBundle\Entity\Goal
+#        inversedBy: User
+        joinColumn:
+          name: goal_id
+          referencedColumnName: id
+          onDelete: CASCADE
+        fetch: EAGER
+
+    oneToMany:
+      userGoalCharities:
+        targetEntity: AppBundle\Entity\UserGoalCharity
+        mappedBy: userGoal
+        cascade: ["persist"]
+      userGoalImages:
+        targetEntity: AppBundle\Entity\UserGoalImage
+        mappedBy: userGoal
+    oneToOne:
+      paymentCharge:
+        targetEntity: AppBundle\Entity\PaymentCharge
+        mappedBy: userGoal
+
+
+    lifecycleCallbacks: {  }

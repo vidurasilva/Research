@@ -1,0 +1,47 @@
+AppBundle\Entity\GroupUser:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\GroupUserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        created:
+            type: datetime
+            gedmo:
+              timestampable:
+                on: create
+        updated:
+            type: datetime
+            gedmo:
+              timestampable:
+                on: update
+        enrolled:
+          type: boolean
+          options:
+            default: 0
+        rejected:
+          type: boolean
+          options:
+            default: 0
+
+    manyToOne:
+      user:
+        targetEntity: UserBundle\Entity\User
+        inversedBy: group
+        joinColumn:
+          name: user_id
+          referencedColumnName: id
+          onDelete: SET NULL
+      group:
+        targetEntity: AppBundle\Entity\GoalGroup
+        inversedBy: groupUsers
+        joinColumn:
+          name: group_id
+          referencedColumnName: id
+          fetch: EAGER
+          onDelete: CASCADE
+    lifecycleCallbacks: {  }

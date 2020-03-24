@@ -1,0 +1,20 @@
+{% extends 'AdminBundle:CRUD:default.html.twig' %}
+
+{% block crud_default %}
+
+    <div class="form-group">
+        <a href="{{ path('user_overview') }}"><button class="btn btn-white">Back to overview</button></a>
+    </div>
+
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form) }}
+    <input class="btn btn-success" type="submit" value="Save"/>
+    {{ form_end(edit_form) }}
+
+
+    <div class="form-group">
+        {{ form_start(delete_form) }}
+        <input class="btn btn-false" type="submit" value="Delete">
+        {{ form_end(delete_form) }}
+    </div>
+{% endblock %}

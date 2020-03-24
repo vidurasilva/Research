@@ -1,0 +1,134 @@
+{% set pageTitle = 'Edit User Goal' %}
+{% extends 'AdminBundle:CRUD:default.html.twig' %}
+
+{% block crud_default %}
+    <style>
+        .parent-collection > div {
+            display: block;
+            padding: 10px;
+            margin: 20px 0;
+            border-bottom: 1px #ccc solid;
+        }
+
+        .child-collection {
+            display: block;
+            margin-top: 10px;
+            margin-left: 50px;
+        }
+
+        .child-collection > div {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px #2c2e2f solid;
+            background-color: #979898;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .form-group .control-label {
+            font-weight: bold;
+        }
+
+        /*.form-group{*/
+        /*height: 25px;*/
+        /*clear: both;*/
+        /*}*/
+        label {
+            color: black;
+        }
+    </style>
+
+    <div class="form-group">
+        <a href="{{ path('usergoal_overview') }}">
+            <button class="btn btn-white">Back to overview</button>
+        </a>
+    </div>
+    <div class="col-md-12" style="background-color: #fff">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#general" data-toggle="tab" aria-expanded="true">
+                    <span class="visible-xs"><i class="fa-home"></i></span>
+                    <span class="hidden-xs">General</span>
+                </a>
+            </li>
+            {#<li class="">#}
+            {#<a href="#milestones" data-toggle="tab" aria-expanded="false">#}
+            {#<span class="visible-xs"><i class="fa-user"></i></span>#}
+            {#<span class="hidden-xs">Milestones</span>#}
+            {#</a>#}
+            {#</li>#}
+        </ul>
+        {{ form_start(edit_form) }}
+        <div class="tab-content">
+            <div class="tab-pane active" id="general">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="col-sm-12">
+                            <h2> {{ userGoal.goal.title }} </h2>
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_row(edit_form.startDate) }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_row(edit_form.endDate) }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_row(edit_form.status) }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_row(edit_form.finished) }}
+                        </div>
+                        <br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="col-sm-12">
+                            {% for milestone in userGoal.goal.milestones %}
+                                <div style="border: 1px #ccc solid; margin:20px 0; padding: 10px;" class="milestone">
+                                    <strong>{{ milestone.title }}</strong><br />
+                                    {{ milestone.startDate|date('d-m-Y') }}<br />
+                                    {{ milestone.title }}
+                                    {% for task in milestone.tasks %}
+                                        <div style="border: 1px #ccc solid; margin:20px 0; padding: 10px; {% if task.tempStatus %}background-color: green;{% endif %}"
+                                             class="milestone">
+                                            {{ task.title }}<br /><br />
+                                            {% if task.tempStatus == false %}link{% endif %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+            {#<div class="tab-pane" id="milestones">#}
+            {#{{ form_widget(edit_form.milestones) }}#}
+
+            {#{{ form_widget(edit_form.milestones[0].tasks[0].title) }}#}
+            {#<div style="clear: both;"></div>#}
+            {#</div>#}
+        </div>
+
+        <div class="form-group">
+            <input class="btn btn-success" type="submit" value="Save"/>
+            {#{{ form_end(edit_form) }}#}
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $('.tab-pane input, .tab-pane textarea').on('invalid', function () {
+
+                // Find the tab-pane that this element is inside, and get the id
+                var $closest = $(this).closest('.tab-pane');
+                var id = $closest.attr('id');
+
+                // Find the link that corresponds to the pane and have it show
+                $('.nav a[href="#' + id + '"]').tab('show');
+
+            });
+        });
+    </script>
+{% endblock %}

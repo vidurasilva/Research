@@ -1,0 +1,10 @@
+{% extends 'AdminBundle:CRUD:default.html.twig' %}
+
+{% block crud_default %}
+    {{ content }}
+    <div class="form-group">
+        <a href="{{ path('command_overview') }}">
+            <button class="btn btn-white">Command overview</button>
+        </a>
+    </div>
+{% endblock %}

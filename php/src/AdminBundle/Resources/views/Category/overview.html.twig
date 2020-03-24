@@ -1,0 +1,44 @@
+{% extends 'AdminBundle:CRUD:default.html.twig' %}
+
+{% block crud_default %}
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Icon</th>
+            <th>Title</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in entity %}
+            <tr>
+                <td><a href="{{ path('category_show', { 'id': item.id }) }}">{{ item.id }}</a></td>
+                
+                <td><img src="{{ asset('data/uploads') }}/{{ item.icon }}" width="25px"/> </td>
+                <td>{{ item.title }}</td>
+                {#<td>{{ item.modified }}</td>#}
+                <td>
+                    <div class="vertical-top action-buttons">
+                        <a href="{{ path('category_edit', { 'id': item.id }) }}">
+                            <button class="btn btn-green btn-icon btn-action">
+                                <i class="fa fa-edit"></i>
+                                <span>Edit</span>
+                            </button>
+                        </a>
+                        <a href="{{ path('category_edit', { 'id': item.id }) }}">
+                            <button class="btn btn-red btn-icon btn-action">
+                                <i class="fa fa-remove"></i>
+                                <span>Delete</span>
+                            </button>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="form-group">
+        <a href="{{ path('category_create') }}"><button class="btn btn-white">Create new category</button></a>
+    </div>
+{% endblock %}

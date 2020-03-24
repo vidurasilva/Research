@@ -1,0 +1,151 @@
+{% extends 'AdminBundle:CRUD:default.html.twig' %}
+
+{% block crud_default %}
+
+    <style>
+        .parent-collection > div {
+            display: block;
+            padding: 10px;
+            margin: 20px 0;
+            border-bottom: 1px #ccc solid;
+        }
+
+        .child-collection {
+            display: block;
+            margin-top: 10px;
+            margin-left: 50px;
+        }
+
+        .child-collection > div {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px #2c2e2f solid;
+            background-color: #979898;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .form-group .control-label {
+            font-weight: bold;
+        }
+
+        /*.form-group{*/
+        /*height: 25px;*/
+        /*clear: both;*/
+        /*}*/
+        label {
+            color: black;
+        }
+    </style>
+
+    <div class="form-group">
+        <a href="{{ path('goal_overview') }}">
+            <button class="btn btn-white">Back to overview</button>
+        </a>
+    </div>
+
+    <div class="col-md-12">
+        {{ form_start(goalForm) }}
+        <div class="tab-content">
+            <div class="tab-pane active" id="general">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="col-sm-12">
+                            {{ form_row(goalForm.title) }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_row(goalForm.description) }}
+                        </div>
+                        <div class="col-sm-6">
+                            {{ form_row(goalForm.duration) }}
+                        </div>
+                        <div class="col-sm-6">
+                            {{ form_row(goalForm.durationUnit) }}
+                        </div>
+                        <div class="col-sm-6">
+                            {{ form_row(goalForm.recurrence) }}
+                        </div>
+                        <div class="col-sm-6">
+                            {{ form_row(goalForm.iteration) }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_row(goalForm.file) }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_row(goalForm.category) }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_row(goalForm.communityCategory) }}
+                        </div>
+
+                        <hr>
+                        <div class="col-sm-12">
+                            <b>Generated task data</b>
+                            <a id="popover" data-trigger="hover" data-content="Data for all generated tasks" rel="popover" data-placement="right">
+                                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_row(goalForm.taskTitle) }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_row(goalForm.taskDescription) }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_row(goalForm.taskImage) }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_row(goalForm.taskVideo) }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_row(goalForm.taskPoints) }}
+                        </div>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="btn btn-success" type="submit" value="Save"/>
+            {{ form_end(goalForm) }}
+        </div>
+    </div>
+    <script>
+        var daily = 1;
+        var weekly = 7;
+        var monthly = 28;
+        $( document ).ready(function() {
+            $("#popover").popover({ trigger: "hover" });
+            $('#repetitive_goal_recurrence').change(function() {
+                setCorrectSelectBoxData();
+            });
+            setCorrectSelectBoxData();
+        });
+
+        function setCorrectSelectBoxData() {
+            var recurrenceSelect = $('#repetitive_goal_recurrence');
+            var recurrenceIteration = $('#repetitive_goal_iteration');
+            if(recurrenceSelect.val() == 'day') {
+                recurrenceIteration.empty();
+                fillSelectBox(recurrenceIteration, daily);
+            } else if(recurrenceSelect.val() == 'week') {
+                recurrenceIteration.empty();
+                fillSelectBox(recurrenceIteration, weekly);
+            } else if (recurrenceSelect.val() == 'month') {
+                recurrenceIteration.empty();
+                fillSelectBox(recurrenceIteration, monthly);
+            }
+        }
+
+        function fillSelectBox(select, maxIteration) {
+            for(var i = 0; i < maxIteration; i++) {
+                var option = document.createElement('option');
+                var optionData = (i + 1).toString();
+                option.innerHTML = optionData + 'x';
+                option.value = optionData;
+                select.append(option);
+            }
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,14 @@
+leaderboard_get_global_score:
+  path: /leaderboard/score/global
+  methods: [GET]
+  defaults: { _controller: AppBundle:LeaderBoard:getGlobalLeaderBoard }
+
+leaderboard_get_goal_score:
+  path: /leaderboard/score/goal/{goal}
+  methods: [GET]
+  defaults: { _controller: AppBundle:LeaderBoard:getGoalLeaderBoard }
+
+leaderboard_get_group_goal_score:
+  path: /leaderboard/score/group/{goalGroup}/{goal}
+  methods: [GET]
+  defaults: { _controller: AppBundle:LeaderBoard:getGroupGoalLeaderBoard }

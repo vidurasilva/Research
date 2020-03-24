@@ -1,0 +1,64 @@
+UserBundle\Entity\User:
+    type: entity
+    table: null
+    repositoryClass: UserBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        firstname:
+          type: string
+          length: 255
+          nullable: true
+        lastname:
+          type: string
+          length: 255
+          nullable: true
+        nickName:
+          type: string
+          length: 255
+          nullable: true
+        gender:
+          type: string
+          nullable: true
+        facebookUserId:
+          type: string
+          nullable: true
+        googleUserId:
+          type: string
+          nullable: true
+        telephone:
+          type: string
+          nullable: true
+        lastActivity:
+          type: datetime
+          nullable: true
+        notificationUserId:
+          type: string
+          nullable: true
+        paymentUser:
+          type: string
+          nullable: true
+        profilePicture:
+          type: string
+          nullable: true
+    oneToMany:
+      userGoals:
+        targetEntity: AppBundle\Entity\UserGoal
+        mappedBy: user
+        onDelete: CASCADE
+      paymentCharges:
+        targetEntity: AppBundle\Entity\PaymentCharge
+        mappedBy: user
+        onDelete: CASCADE
+      questions:
+        targetEntity: AppBundle\Entity\CommunityQuestion
+        mappedBy: user
+      group:
+        targetEntity: AppBundle\Entity\GroupUser
+        mappedBy: user
+    lifecycleCallbacks:
+        preFlush: [prePersist]

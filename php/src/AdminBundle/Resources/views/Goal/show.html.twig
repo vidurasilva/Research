@@ -1,0 +1,30 @@
+{% extends 'AdminBundle:CRUD:default.html.twig' %}
+
+{% block crud_default %}
+    <table class="table table-bordered table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ goal.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ goal.title }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('goal_overview') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('goal_edit', { 'id': goal.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

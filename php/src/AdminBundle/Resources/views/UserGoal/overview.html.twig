@@ -1,0 +1,46 @@
+{% extends 'AdminBundle:CRUD:default.html.twig' %}
+
+{% block crud_default %}
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Goal</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Status</th>
+            <th>Active</th>
+            <th>Finished</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for userGoal in userGoals %}
+            <tr>
+                <td><a href="{{ path('usergoal_show', { 'id': userGoal.id }) }}">{{ userGoal.id }}</a></td>
+                <td>{{ userGoal.goal.title }}</td>
+                <td>{{ userGoal.startDate|date("d-m-Y") }}</td>
+                <td>{{ userGoal.endDate|date("d-m-Y") }}</td>
+                <td>{{ userGoal.status }}</td>
+                <td>{% if userGoal.active %}Yes {% else %}No{% endif %}</td>
+                <td>{% if userGoal.finished %}Yes {% else %}No{% endif %}</td>
+                <td>
+                    <div class="vertical-top action-buttons">
+                        <a href="{{ path('usergoal_edit', { 'id': userGoal.id }) }}">
+                            <button class="btn btn-green btn-icon btn-action">
+                                <i class="fa fa-edit"></i>
+                                <span>Edit</span>
+                            </button>
+                        </a>
+                        {#<a href="{{ path('usergoal_edit', { 'id': userGoal.id }) }}">#}
+                            {#<button class="btn btn-red btn-icon btn-action">#}
+                                {#<i class="fa fa-remove"></i>#}
+                                {#<span>Delete</span>#}
+                            {#</button>#}
+                        {#</a>#}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,63 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+    firewalls:
+        doc:
+            pattern: ^/doc/
+            security: false
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        oauth_token:
+            pattern: ^/api/oauth/v2/token
+            security: false
+            fos_oauth: false
+            anonymous: true
+        oauth_registration:
+            pattern: ^/api/authorization
+            security: false
+            fos_oauth: false
+            anonymous: true
+        api_user:
+            pattern: ^/api/user/me
+            fos_oauth: true
+            stateless: true
+            anonymous: false
+        api_user:
+            pattern: ^/api/user
+            fos_oauth: true
+            stateless: true
+            anonymous: ~
+        api:
+            pattern: ^/api/
+            fos_oauth: true
+            stateless: true
+            anonymous: false
+
+        admin:
+            pattern:            ^/%admin_url%(.*)
+            context:            user
+            form_login:
+                provider:       fos_userbundle
+                login_path:     /%admin_url%/login
+                use_forward:    false
+                check_path:     /%admin_url%/login_check
+                failure_path:   null
+                always_use_default_target_path: true
+                default_target_path: /%admin_url%/
+            logout:
+                path:           /%admin_url%/logout
+                target:         /%admin_url%/login
+            anonymous:          ~
+    access_control:
+        - { path: ^/%admin_url%/login$, role: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/%admin_url%/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/%admin_url%/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/%admin_url%/(.*)$, role: ROLE_ADMIN}
+        - { path: ^/api/authorization/, roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
+        - { path: ^/api/password, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/(.*)$, roles: ROLE_USER }

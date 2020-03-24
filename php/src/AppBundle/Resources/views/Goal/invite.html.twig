@@ -1,0 +1,10 @@
+{% extends ':email:base.html.twig' %}
+{% block content %}
+    <h1 style="font-size:30px; line-height:40px; font-weight: bold; font-family: Helvetica, Arial, sans-serif;">
+        Je bent uitgenodigd voor een nieuwe groep!</h1>
+    <span style="font-size:16px; font-family: Helvetica, Arial, sans-serif; line-height: 24px;">
+	Je bent uitgenodigd om mee te doen met een nieuwe groepschallenge.<br/>
+        De challenge start op {{ start_date }} <br>
+        Bestaande gebruikers kunnen de challenge bekijken en accepteren in de app. Nieuwe gebruikers moeten eerst een account maken om vervolgens de uitnodiging in de app te bekijken en te accepteren.
+    </span>
+{% endblock %}

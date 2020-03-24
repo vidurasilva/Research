@@ -1,0 +1,24 @@
+AppBundle\Entity\GoalCategory:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\GoalCategoryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        icon:
+            type: string
+            length: 255
+            nullable: true
+    oneToMany:
+        goals:
+          targetEntity: AppBundle\Entity\Goal
+          mappedBy: category
+
+    lifecycleCallbacks: {  }

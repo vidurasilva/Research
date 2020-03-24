@@ -1,0 +1,39 @@
+AppBundle\Entity\CommunityCategory:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\CommunityCategoryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        icon:
+            type: string
+            length: 255
+            nullable: true
+    oneToMany:
+        children:
+            fetch: "EAGER"
+            targetEntity: AppBundle\Entity\CommunityCategory
+            mappedBy: parent
+            cascade: ["all"]
+        questions:
+          targetEntity: AppBundle\Entity\CommunityQuestion
+          mappedBy: communityCategory
+        goals:
+          targetEntity: AppBundle\Entity\Goal
+          mappedBy: communityCategory
+    manyToOne:
+        parent:
+            targetEntity: AppBundle\Entity\CommunityCategory
+            inversedBy: children
+            joinColumn:
+                name: parentId
+                referencedColumnName: id
+                onDelete: SET NULL
+    lifecycleCallbacks: {  }

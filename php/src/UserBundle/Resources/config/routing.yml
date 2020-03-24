@@ -1,0 +1,29 @@
+oauth_token:
+  path: /oauth/v2/token
+  methods: [POST,OPTIONS]
+  defaults: { _controller: fos_oauth_server.controller.token:tokenAction }
+
+authorization_registration:
+  path: /authorization/registration
+  methods: [POST,OPTIONS]
+  defaults: { _controller: UserBundle:Authentication:register }
+ 
+authorization_facebook:
+  path: /authorization/facebook
+  methods: [POST,OPTIONS]
+  defaults: { _controller: UserBundle:Authentication:facebook }
+
+authorization_google:
+  path: /authorization/google
+  methods: [POST,OPTIONS]
+  defaults: { _controller: UserBundle:Authentication:google }
+
+get_current_user:
+  path: /user/me
+  methods: [GET,OPTIONS]
+  defaults: { _controller: UserBundle:User:me}
+
+request_password:
+  path: /password/request
+  methods: [PUT,OPTIONS]
+  defaults: { _controller: UserBundle:User:requestPassword}

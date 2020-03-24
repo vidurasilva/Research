@@ -1,0 +1,85 @@
+AppBundle\Entity\Goal:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\GoalRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+      title:
+        type: string
+        length: 255
+      duration:
+        type: integer
+        nullable: true
+      durationUnit:
+        type: string
+        nullable: true
+      startDate:
+        type: datetime
+        nullable: true
+      deadline:
+        type: datetime
+        nullable: true
+      recurrence:
+        type: string
+        nullable: true
+      iteration:
+        type: smallint
+        nullable: true
+      description:
+        type: text
+        nullable: true
+      additionalDescription:
+        type: text
+        nullable: true
+      icon:
+        type: string
+        length: 255
+        nullable: true
+      points:
+        type: integer
+        nullable: true
+        options:
+          unsigned: true
+      predefined:
+        type: boolean
+        nullable: true
+        options:
+            default: 0
+    oneToMany:
+      milestones:
+        targetEntity: AppBundle\Entity\Milestone
+        mappedBy: goal
+        cascade: ["persist", "remove"]
+        orphanRemoval: true
+        user:
+          targetEntity: UserBundle\Entity\User
+          inversedBy: goal
+          joinColumn:
+            name: user_id
+            referencedColumnName: id
+            onDelete: SET NULL
+    manyToOne:
+        category:
+          targetEntity: AppBundle\Entity\GoalCategory
+          inversedBy: goals
+          joinColumn:
+            name: category_id
+            referencedColumnName: id
+            onDelete: SET NULL
+        communityCategory:
+          targetEntity: AppBundle\Entity\CommunityCategory
+          inversedBy: goals
+          joinColumn:
+            name: community_category_id
+            referencedColumnName: id
+            onDelete: SET NULL
+        originGoal:
+          targetEntity: AppBundle\Entity\Goal
+          joinColumn:
+            onDelete: CASCADE
+    lifecycleCallbacks: {  }

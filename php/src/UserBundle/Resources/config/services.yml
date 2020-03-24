@@ -1,0 +1,69 @@
+services:
+    user.service:
+        class: UserBundle\Service\UserService
+        arguments:
+          - "@user.service.auth"
+          - "@security.token_storage"
+          - "@event_dispatcher"
+          - "@app.service.mailer"
+          - "@fos_user.util.token_generator"
+          - "@user.repository"
+          - '%marketing_site_url%'
+          - "@router"
+          - '%data_uploads%'
+
+    user.service.auth:
+        class: UserBundle\Service\AuthService
+        lazy: true
+        arguments:
+          - "@fos_user.user_manager"
+          - "@fos_oauth_server.access_token_manager"
+          - "@fos_oauth_server.server"
+
+    user.storage.oauth:
+        class: UserBundle\Storage\OAuthStorage
+        arguments: ['@fos_oauth_server.client_manager', '@fos_oauth_server.access_token_manager', '@fos_oauth_server.refresh_token_manager', '@fos_oauth_server.auth_code_manager', '@fos_oauth_server.user_provider', '@security.encoder_factory']
+
+    user.service.facebook.factory:
+        class: UserBundle\Service\Factory\FacebookServiceFactory
+        arguments: ["%facebook_app_id%", "%facebook_app_secret%"]
+    user.service.facebook:
+        class: UserBundle\Service\Factory\FacebookServiceFactory
+        factory_service: user.service.facebook.factory
+        factory_method: create
+
+    user.service.google:
+      class: UserBundle\Service\GoogleService
+      arguments: ["%google_client_id%", "%google_client_secret%"]
+
+#    user_bundle.services.preferences:
+#        class: UserBundle\Service\PreferencesService
+#        arguments: ["@doctrine.orm.default_entity_manager", "@notification.services.segmentation_synchronisation_service"]
+    user.subscriber.registration:
+        class: UserBundle\EventListener\RegistrationListener
+        arguments: ["@user.service", "@app.service.mailer", "@doctrine.orm.default_entity_manager"]
+        tags:
+            - { name: kernel.event_subscriber }
+    user.repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - UserBundle\Entity\User
+    fos_oauth_server.controller.token:
+        class: UserBundle\Controller\TokenController
+        arguments: ["@fos_oauth_server.server"]
+
+#services:
+#  user.storage.oauth:
+#    class: UserBundle\Storage\OAuthStorage
+#    arguments: ['@fos_oauth_server.client_manager', '@fos_oauth_server.access_token_manager', '@fos_oauth_server.refresh_token_manager', '@fos_oauth_server.auth_code_manager', '@fos_oauth_server.user_provider']
+
+#    <service id="user.storage.oauth" class="UserBundle\Storage\OAuthStorage">
+#              <argument type="service" id="fos_oauth_server.client_manager" />
+#              <argument type="service" id="fos_oauth_server.access_token_manager" />
+#              <argument type="service" id="fos_oauth_server.refresh_token_manager" />
+#              <argument type="service" id="fos_oauth_server.auth_code_manager" />
+#              <argument type="service" id="fos_oauth_server.user_provider" on-invalid="null" />
+#              <argument type="service" id="security.encoder_factory" />
+#            </service>

@@ -1,0 +1,26 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: localhost
+    database_port: 3306
+    database_name: 'goal'
+    database_user: 'root'
+    database_password: ''
+    mailer_transport: gmail
+    mailer_host: 'smtp.gmail.com'
+    mailer_user: 'challangeaccepted.goals@gmail.com'
+    mailer_password: 'Meegua123'
+    secret: 8c7b0802f3b22563bc0723c4b0b816131353ce7d
+    mailer_email: noreply@pleasepush.me
+    mailer_name: Push - Achieve any Goal
+    mailer_email_pictures: jblindpush+dz35nbm3eojehy8xps1b@boards.trello.com
+    site_title: pleasepush.me
+    marketing_site_url: 'https://pleasepushme.e-sites.nl/'
+    facebook_app_id: 175920646175593
+    facebook_app_secret: 76c839879d8ee62f0589c48d2c4ffcf8
+    google_client_id: 416521347698-ashrpmcat4hinqblbtngdrnvaaob0u8g.apps.googleusercontent.com
+    google_client_secret: fsIQsnGcwzVhIHnwPqTHCKVR
+    admin_url: admin
+    data_upload_web: '/data/uploads'
+    data_uploads: '%kernel.root_dir%/../web/data/uploads'
+    stripe_api_key: sk_live_PrVsZM1VvXFeE2iWzzS3dWmu
+    cooldown_time: '+2 days'

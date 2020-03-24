@@ -1,0 +1,12 @@
+services:
+    app_bundle.listener.goal.subscribe:
+        class: AppBundle\Event\GoalSubscribeListener
+        arguments: ["@app.service.mailer", "@user.service", "@doctrine.orm.entity_manager"]
+        tags:
+            - { name: kernel.event_listener, event: app.send_invites.after, method: sendEmails }
+
+    app_bundle.listener.goal.attach.existing.user:
+        class: AppBundle\Event\GoalSubscribeListener
+        arguments: ["@app.service.mailer", "@user.service", "@doctrine.orm.entity_manager"]
+        tags:
+            - { name: kernel.event_listener, event: app.attach_existing_users.before, method: attachExistingUserToGroupGoal }

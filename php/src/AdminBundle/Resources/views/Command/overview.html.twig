@@ -1,0 +1,31 @@
+{% extends 'AdminBundle:CRUD:default.html.twig' %}
+
+{% block crud_default %}
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in commands %}
+            <tr>
+                <td><a href="{{ path('command_execute', { 'id': item.id }) }}">{{ item.id }}</a></td>
+                <td>{{ item.name }}</td>
+                <td>
+                    <div class="vertical-top action-buttons">
+                        <a href="{{ path('command_execute', { 'id': item.id }) }}">
+                            <button class="btn btn-green btn-icon btn-action">
+                                <i class="fa fa-play"></i>
+                                <span>Execute</span>
+                            </button>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

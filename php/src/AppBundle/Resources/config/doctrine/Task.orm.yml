@@ -1,0 +1,42 @@
+AppBundle\Entity\Task:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\TaskRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        position:
+          type: integer
+          options:
+            unsigned: true
+        points:
+          type: integer
+          nullable: true
+          options:
+            unsigned: true
+        video:
+          type: string
+          nullable: true
+        image:
+          type: string
+          nullable: true
+        description:
+          type: text
+          nullable: true
+
+    manyToOne:
+      milestone:
+        targetEntity: AppBundle\Entity\Milestone
+        inversedBy: tasks
+        joinColumn:
+          onDelete: CASCADE
+
+
+    lifecycleCallbacks: {  }

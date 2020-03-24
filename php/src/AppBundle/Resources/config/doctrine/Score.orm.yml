@@ -1,0 +1,35 @@
+AppBundle\Entity\Score:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\ScoreRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        score:
+            type: integer
+    manyToOne:
+        user:
+            targetEntity: UserBundle\Entity\User
+            joinColumn:
+              name: user_id
+              referencedColumnName: id
+              onDelete: CASCADE
+        goal:
+            targetEntity: AppBundle\Entity\Goal
+            joinColumn:
+              name: goal_id
+              referencedColumnName: id
+              onDelete: CASCADE
+        group_goal:
+            targetEntity: AppBundle\Entity\GoalGroup
+            nullable: true
+            joinColumn:
+              name: group_goal_id
+              referencedColumnName: id
+              onDelete: CASCADE
+
+    lifecycleCallbacks: {  }

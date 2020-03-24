@@ -1,0 +1,155 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: "@ApiBundle/Resources/config/services.yml" }
+    - { resource: "@UserBundle/Resources/config/services.yml" }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+
+framework:
+    #esi:             ~
+    #translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+        cookie_lifetime: 2629743 #1 Month
+
+    fragments:       ~
+    http_method_override: true
+
+sensio_framework_extra:
+    request:
+        converters: true
+        auto_convert: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form_themes:
+        - 'bootstrap_3_layout.html.twig' #Overwrite the default form widgets
+        - '@AdminBundle/Resources/views/Form/fields.html.twig' #Overwrite the default form widgets
+
+    globals:
+        site_title: %site_title%
+        marketing_site_url: %marketing_site_url%
+        data_folder: %data_upload_web%
+#        mailer_email_embarrassing_picture: %mailer_email%
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+# Fos User Bundle
+fos_user:
+    db_driver: orm
+    firewall_name: api
+    user_class: UserBundle\Entity\User
+
+# Fos Oauth server Bundle
+fos_oauth_server:
+    db_driver: orm
+    client_class:        UserBundle\Entity\Client
+    access_token_class:  UserBundle\Entity\AccessToken
+    refresh_token_class: UserBundle\Entity\RefreshToken
+    auth_code_class:     UserBundle\Entity\AuthCode
+
+    service:
+        user_provider: fos_user.user_provider.username
+        storage: user.storage.oauth
+        options:
+            access_token_lifetime: 3600
+            refresh_token_lifetime: 15724800
+
+# FOS REST bundle
+fos_rest:
+    routing_loader:
+        default_format: json
+        include_format: false
+    view:
+        formats:
+            rss: false
+            xml: false
+            html: false
+            json: true
+        view_response_listener: force
+    param_fetcher_listener: true
+    format_listener:
+        enabled: true
+        rules:
+            - { path: '^/api', fallback_format: json }
+            - { path: '^/', fallback_format: html }
+            #- { path: %admin_url%, fallback_format: html }
+    exception:
+        enabled: true
+    versioning:
+        enabled: true
+        resolvers:
+            query: false
+            custom_header: true
+            media_type:
+                enabled: true
+                regex: '/(v|version)=(?P<version>[0-9\.]+)/'
+    serializer:
+        serialize_null: true
+
+    view:
+        serialize_null: true
+nelmio_api_doc:
+    sandbox:
+        authentication:
+            name: Authorization
+            delivery: header
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            timestampable: true
+dms_filter:
+    auto_filter_forms: false
+
+knp_menu:
+    # use "twig: false" to disable the Twig extension and the TwigRenderer
+    twig:
+        template: AdminBundle::menu.html.twig
+    #  if true, enables the helper for PHP templates
+    templating: false
+    # the renderer to use, list is also available by default
+    default_renderer: twig

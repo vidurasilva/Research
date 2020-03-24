@@ -1,0 +1,34 @@
+{% form_theme form _self %}
+
+{% block collection_widget %}
+    {% spaceless %}
+        {#<h4>{{ label|humanize }}</h4>#}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': form_row(prototype)}) %}
+            {% set attr = attr|merge({'data-prototype-name': prototype.vars.name}) %}
+        {% endif %}
+        {% set attr = attr|merge({'data-allow-add': allow_add ? 1 : 0}) %}
+        {% set attr = attr|merge({'data-allow-remove': allow_delete ? 1 : 0 }) %}
+        {% set attr = attr|merge({'data-name-prefix': full_name}) %}
+        {{ block('form_widget') }}
+    {% endspaceless %}
+{% endblock collection_widget %}
+
+{% block _task_entry_widget %}
+    <tr>
+        test
+        <td>{{ form_widget(form.task) }}</td>
+        <td>{{ form_widget(form.dueDate) }}</td>
+    </tr>
+{% endblock %}
+
+{% block file_widget %}
+
+    {% if form.vars.data != '' %}
+        <div style="clear: both;">
+            <img style="float:left; margin: 10px;" width="100px" src="{{ app.request.schemeAndHttpHost }}{{ data_folder }}/{{ form.vars.data }}"/>
+        </div>
+        <div style="clear: both"></div>
+    {% endif %}
+    {{ block('form_widget_simple') }}
+{% endblock file_widget %}

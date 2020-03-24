@@ -1,0 +1,5 @@
+services:
+  serializer.subscriber:
+    class: ApiBundle\Event\SerializerSubscriber
+    tags:
+       - { name: jms_serializer.event_subscriber }

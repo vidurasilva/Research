@@ -1,0 +1,31 @@
+AppBundle\Entity\CommunityQuestionAnswerVote:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\CommunityQuestionAnswerVoteRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        vote:
+            type: integer
+    manyToOne:
+        answers:
+          targetEntity: AppBundle\Entity\CommunityQuestionAnswer
+          inversedBy: votes
+          joinColumn:
+            name: answer_id
+            referencedColumnName: id
+            onDelete: CASCADE
+            fetch: LAZY
+        user:
+          targetEntity: UserBundle\Entity\User
+#          inversedBy: answers
+          joinColumn:
+            name: user_id
+            referencedColumnName: id
+            onDelete: CASCADE
+            fetch: LAZY
+    lifecycleCallbacks: {  }

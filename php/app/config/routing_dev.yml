@@ -1,0 +1,30 @@
+_wdt:
+    resource: "@WebProfilerBundle/Resources/config/routing/wdt.xml"
+    prefix:   /_wdt
+
+_profiler:
+    resource: "@WebProfilerBundle/Resources/config/routing/profiler.xml"
+    prefix:   /_profiler
+
+_errors:
+    resource: "@TwigBundle/Resources/config/routing/errors.xml"
+    prefix:   /_error
+
+_main:
+    resource: routing.yml
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix: /doc
+
+facebook_action_token_test:
+  path: /test/facebookactiontoken
+  defaults: { _controller: UserBundle:Test:getFacebookToken }
+
+google_action_token_test:
+  path: /test/googleactiontoken
+  defaults: { _controller: UserBundle:Test:getGoogleToken }
+
+general_test_action:
+  path: /test/test
+  defaults: { _controller: AppBundle:Test:index }

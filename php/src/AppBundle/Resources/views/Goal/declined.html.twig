@@ -1,0 +1,9 @@
+{% extends '@App/layout.html.twig' %}
+{% block content %}
+    <p>
+        Hi!
+    </p>
+    <p>
+        Thanks for supporting, we will inform {% if userGoal.goal %}{{ userGoal.user.firstname }}{% else %}the owner{% endif %} that the check-in {% if userGoal.goal %}{{ userGoal.goal.title }}{% endif %} has been declined!
+    </p>
+{% endblock %}

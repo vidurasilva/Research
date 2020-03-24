@@ -1,0 +1,25 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: localhost
+    database_port: null
+    database_name: pj_goals-app
+    database_user: pj_goals-app
+    database_password: goals-app
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 8c7b0802f3b22563bc0723c4b0b816131353ce7d
+    admin_url: admin
+    mailer_name: Push - Achieve any Goal [local]
+    mailer_email: noreply@pleasepush.me
+    mailer_email_pictures: noreply@pleasepush.me
+    facebook_app_id: 175922806175377
+    facebook_app_secret: e76c65f5ff4170b9d41d18372daaf5b9
+    marketing_site_url: 'http://goals-app.ebox/'
+    google_client_id: 416521347698-ashrpmcat4hinqblbtngdrnvaaob0u8g.apps.googleusercontent.com
+    google_client_secret: fsIQsnGcwzVhIHnwPqTHCKVR
+    data_upload_web: '/data/uploads'
+    data_uploads: '%kernel.root_dir%/../web/data/uploads'
+    stripe_api_key: sk_test_QjZylDeIdT8r77jy4AFIBEBM
+    cooldown_time: '+2 days'

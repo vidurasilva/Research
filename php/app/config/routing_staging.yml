@@ -1,0 +1,10 @@
+_main:
+    resource: routing.yml
+
+facebook_action_token_test:
+  path: /test/facebookactiontoken
+  defaults: { _controller: UserBundle:Test:getFacebookToken }
+
+google_action_token_test:
+  path: /test/googleactiontoken
+  defaults: { _controller: UserBundle:Test:getGoogleToken }

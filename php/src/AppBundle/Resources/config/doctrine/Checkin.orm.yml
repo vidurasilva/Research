@@ -1,0 +1,46 @@
+AppBundle\Entity\Checkin:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\CheckinRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        created:
+            type: datetime
+            nullable: true
+            gedmo:
+              timestampable:
+                on: create
+        approved:
+          type: boolean
+          nullable: true
+          options:
+              default: 1
+        status:
+          type: string
+          nullable: false
+          options:
+              default: 'done'
+
+    manyToOne:
+        userGoal:
+          targetEntity: AppBundle\Entity\UserGoal
+#          inversedBy: goalMilestoneTasks
+          joinColumn:
+            name: user_goal_id
+            referencedColumnName: id
+            onDelete: CASCADE
+            nullable: false
+        task:
+          targetEntity: AppBundle\Entity\Task
+#          inversedBy: goalMilestoneTasks
+          joinColumn:
+            name: task_id
+            referencedColumnName: id
+            onDelete: CASCADE
+            nullable: false
+    lifecycleCallbacks: {  }

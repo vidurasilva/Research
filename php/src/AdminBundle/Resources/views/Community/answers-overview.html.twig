@@ -1,0 +1,37 @@
+{% extends 'AdminBundle:CRUD:default.html.twig' %}
+
+{% block crud_default %}
+    <h2>Answers - {{ question.title }}</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Answer</th>
+            <th>Author</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in entity %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.answer }}</td>
+                <td>{{ item.user.firstname }} {{ item.user.lastname }}</td>
+                <td>
+                    <div class="vertical-top action-buttons">
+                        <a href="{{ path('community_answer_show', { 'id': item.id }) }}">
+                            <button class="btn btn-red btn-icon btn-action">
+                                <i class="fa fa-remove"></i>
+                                <span>Delete</span>
+                            </button>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {#<div class="form-group">#}
+        {#<a href="{{ path('community_create') }}"><button class="btn btn-white">Create new community</button></a>#}
+    {#</div>#}
+{% endblock %}

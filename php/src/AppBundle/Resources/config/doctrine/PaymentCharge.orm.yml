@@ -1,0 +1,66 @@
+AppBundle\Entity\PaymentCharge:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\PaymentChargeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        created:
+            type: datetime
+            gedmo:
+              timestampable:
+                on: create
+        updated:
+            type: datetime
+            gedmo:
+              timestampable:
+                on: update
+        amount:
+          type: integer
+          options:
+            unsigned: true
+        customer:
+          type: string
+        source:
+          type: string
+        currency:
+          type: string
+          length: 3
+        description:
+          type: string
+        stripeChargeId:
+          type: string
+          nullable: true
+        captured:
+          type: boolean
+          options:
+            default: 0
+        paid:
+          type: boolean
+          options:
+            default: 0
+        stripeResponse:
+          type: text
+          nullable: true
+
+    manyToOne:
+      user:
+        targetEntity: UserBundle\Entity\User
+        inversedBy: paymentCharges
+        joinColumn:
+          name: user_id
+          referencedColumnName: id
+          onDelete: CASCADE
+    oneToOne:
+      userGoal:
+        targetEntity: AppBundle\Entity\UserGoal
+        inversedBy: paymentCharge
+        joinColumn:
+          name: usergoal_id
+          onDelete: CASCADE
+
+    lifecycleCallbacks: {  }

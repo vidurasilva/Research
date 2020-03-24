@@ -1,0 +1,19 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block content %}
+
+    <div class="col-sm-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Category</h3>
+            </div>
+            <!--End panel-heading-->
+            <div class="panel-body">
+                {% block crud_default %}{% endblock %}
+            </div>
+            <!--End panel-body-->
+        </div>
+    </div>
+
+{% endblock %}

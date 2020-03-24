@@ -1,0 +1,27 @@
+/**
+ *
+ * Apply your custom CSS here
+ *
+*/
+
+body {	
+}
+
+a {
+}
+
+.crud-action-list{
+    list-style-type: none;
+}
+
+/**
+*Crud form styling.
+*/
+.action-buttons{
+    float:right;
+}
+
+.btn-action{
+    padding: 2px 7px;
+    border-radius: 1px;
+}

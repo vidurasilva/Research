@@ -1,0 +1,43 @@
+AppBundle\Entity\GroupInvite:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\GroupInviteRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        email:
+            type: string
+            nullable: false
+        mail_sended:
+          type: boolean
+          options:
+            default: 0
+          nullable: true
+        mail_attemps:
+          type: boolean
+          nullable: true
+          options:
+              default: 0
+        created:
+            type: datetime
+            gedmo:
+              timestampable:
+                on: create
+        updated:
+            type: datetime
+            gedmo:
+              timestampable:
+                on: update
+    manyToOne:
+      group:
+        targetEntity: AppBundle\Entity\GoalGroup
+        inversedBy: groupUsers
+        joinColumn:
+          name: group_id
+          referencedColumnName: id
+          onDelete: CASCADE
+    lifecycleCallbacks: {  }

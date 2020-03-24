@@ -1,0 +1,35 @@
+{% extends ':email:base.html.twig' %}
+{% block content %}
+    <h1 style="font-size:30px; line-height:40px; font-weight: bold; font-family: Helvetica, Arial, sans-serif;">Failed
+        goal embarrassing picture</h1>
+    <span style="font-size:16px; font-family: Helvetica, Arial, sans-serif; line-height: 24px;">
+	     {{ user.getFirstname }} failed a goal, in this mail the embarrassing picture(s) and goal information.<br>
+    </span>
+    <table border="0">
+        <tr>
+            <td><strong>Failed goal:</strong></td>
+            <td>{{ goal.getTitle }}</td>
+        </tr>
+        <tr>
+            <td><strong>Firstname:</strong></td>
+            <td>{{ user.firstname }}</td>
+        </tr>
+        <tr>
+            <td><strong>Lastname:</strong></td>
+            <td>{{ user.lastname }}</td>
+        </tr>
+        <tr>
+            <td><strong>Email:</strong></td>
+            <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+            <td><strong>Embarrassing pictures:</strong></td>
+            <td>
+                {% for item in userGoal.UserGoalImages %}
+                    <img src="{{ marketing_site_url }}/web/data/uploads/goals/{{ item.image }}" width="150px"
+                         alt="{{ goal.getTitle}}"/>
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+{% endblock %}

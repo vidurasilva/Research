@@ -1,0 +1,43 @@
+{% extends ':email:base.html.twig' %}
+{% block content %}
+    <h1 style="font-size:30px; line-height:40px; font-weight: bold; font-family: Helvetica, Arial, sans-serif;">
+        {{ item[0].userGoal.user.firstname }} has checked-in!
+    </h1>
+    <p style="{{ paragraphStyle }}">Hi!</p>
+    <p style="{{ paragraphStyle }}">
+	    {{ item[0].userGoal.user.firstname }} has checked-in and is one step closer to completing the goal. <br>
+        Accept or decline the following check-ins
+    </p>
+
+    {% for checkinToken in item %}
+        <table border="0" >
+            <thead>
+            </thead>
+            <tr>
+                <td><p style="{{ paragraphStyle }}">{{ checkinToken.getTask.getTitle }}</p></td>
+            </tr>
+            <tr>
+                <td>
+                    {% if checkinToken.image is empty %}
+                        <img src="{{ marketing_site_url }}/web/bundles/app/images/logo_mail.png" width="150px" height="150px"
+                             alt="Goals logo"/>
+                    {% else %}
+                        <img src="{{ marketing_site_url }}/web/data/uploads/checkin/{{ checkinToken.image }}" width="150px" height="150px"
+                             alt="{{ checkinToken.getTask.getTitle }}"/>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 1px solid #cccccc;">
+                    {% set baseUrlEnd = marketing_site_url.length %}
+                    <a href="{{ marketing_site_url | trim('/') | reverse | split('/',2) | last | reverse}}{{ path('supervisor_accept_task_checkin', {acceptToken: checkinToken.acceptToken, user : checkinToken.userGoal.getUser.getId}) }}"><span
+                                style="font-size:16px; font-family: Helvetica, Arial, sans-serif; line-height: 24px;">Accept</span></a>
+                    /
+                    <a href="{{ marketing_site_url | trim('/') | reverse | split('/',2) | last | reverse}}{{ path('supervisor_decline_task_checkin', {declineToken: checkinToken.declineToken, user : checkinToken.userGoal.getUser.getId}) }}"><span
+                                style="font-size:16px; font-family: Helvetica, Arial, sans-serif; line-height: 24px;">Decline</span></a>
+                </td>
+            </tr>
+        </table>
+        <br/>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,9 @@
+paymer_user_get_customer:
+  path: /user/payment/customer
+  methods: [GET]
+  defaults: { _controller: AppBundle:Payment:getCustomer }
+
+paymer_user_store_source:
+  path: /user/payment/source
+  methods: [POST]
+  defaults: { _controller: AppBundle:Payment:storeSource }

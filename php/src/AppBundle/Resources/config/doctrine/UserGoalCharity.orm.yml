@@ -1,0 +1,26 @@
+AppBundle\Entity\UserGoalCharity:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\UserGoalCharityRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        percentage:
+            type: integer
+
+    manyToOne:
+      userGoal:
+        targetEntity: AppBundle\Entity\UserGoal
+        inversedBy: userGoalCharities
+        joinColumn:
+          onDelete: CASCADE
+      charity:
+        targetEntity: AppBundle\Entity\Charity
+        joinColumn:
+          onDelete: RESTRICT
+
+    lifecycleCallbacks: {  }

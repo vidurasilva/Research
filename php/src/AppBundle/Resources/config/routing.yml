@@ -1,0 +1,58 @@
+user_password_reset:
+  path: /password/update/{recoveryToken}
+  methods: [GET,POST,OPTIONS]
+  defaults: { _controller: AppBundle:Default:updatePassword }
+
+user_password_reset_success:
+  path: /password/success
+  methods: [GET,OPTIONS]
+  defaults: { _controller: AppBundle:Default:updatePasswordSuccess }
+
+terms_and_conditions:
+  path: /terms-conditions
+  methods: [GET]
+  defaults: { _controller: AppBundle:Default:termsAndConditions }
+
+about:
+  path: /about
+  methods: [GET]
+  defaults: { _controller: AppBundle:Default:about }
+
+join_group:
+  path: /join-group
+  methods: [GET]
+  defaults: { _controller: AppBundle:Default:joinGroup }
+
+_community:
+    resource: "@AppBundle/Resources/config/routing_community.yml"
+    type: rest
+    prefix: api
+
+_goals:
+    resource: "@AppBundle/Resources/config/routing_goals.yml"
+    type:     rest
+    prefix:   api
+
+_checkins:
+    resource: "@AppBundle/Resources/config/routing_checkins.yml"
+    type:     rest
+    prefix:   api
+
+_group:
+    resource: "@AppBundle/Resources/config/routing_groups.yml"
+    type:     rest
+    prefix:   api
+
+_payment:
+    resource: "@AppBundle/Resources/config/routing_payment.yml"
+    type:     rest
+    prefix:   api
+
+_leaderboard:
+    resource: "@AppBundle/Resources/config/routing_leaderboard.yml"
+    type:     rest
+    prefix:   api
+
+_supervisor:
+    resource: "@AppBundle/Resources/config/routing_supervisor.yml"
+    type:     rest
